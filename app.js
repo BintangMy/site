@@ -6,6 +6,7 @@
   const port = process.env.PORT || 3050
   const routes = require("./routes/index")
   const cors = require("cors")
+  // const path = require(path);
   
   app.use(cors())
   app.use(express.json())
@@ -13,6 +14,8 @@
   let {handleError} = require("./middlewares/handleError")
   
   app.use('/', routes)
+  app.use("/photos", express.static('public/data/uploads'))
+  
   app.use(handleError)
   
   app.listen(port, () => {
