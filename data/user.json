@@ -1,8 +1,8 @@
 [
     {
-    "username": "Bintang",
+    "userName": "Super Admin",
     "email": "admin@admin.com",
-    "password": "123",
-    "role": "admin"
+    "password": "admin123#",
+    "roleId": 1
 }
 ]

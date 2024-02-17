@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcryptjs');
 const {
   Model
 } = require('sequelize');
@@ -11,23 +12,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.belongsTo(models.Role,{foreignKey:"roleId"})
+      User.hasMany(models.Post,{foreignKey:"authorId"})
     }
   }
   User.init({
-    username: DataTypes.STRING,
-    email: {
+    userName: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique:{
-        msg:"e-mail already registered"
-      },
       validate: {
         notEmpty: {
-          msg: "email not empty"
+          msg: "username not empty"
         },
-        isEmail: {
-          msg: "Format must be e-mail"
-        }
+        unique:{
+          msg:"username already registered"
+        },
       }
     },
     password: {
@@ -44,7 +42,22 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    role: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique:{
+        msg:"e-mail already registered"
+      },
+      validate: {
+        notEmpty: {
+          msg: "email not empty"
+        },
+        isEmail: {
+          msg: "Format must be e-mail"
+        }
+      }
+    },
+    roleId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'User',
