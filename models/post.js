@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Post.belongsTo(models.Category,{foreignKey:"categoryId"})
       Post.belongsTo(models.User,{foreignKey:"authorId"})
-      Post.hasMany(models.FavoriteBlog,{foreignKey:'postId'})
+      Post.hasMany(models.Image,{foreignKey:'postId'})
     }
   }
   Post.init({

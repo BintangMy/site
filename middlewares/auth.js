@@ -5,6 +5,8 @@ async function authentication(req, res, next) {
     try {
         // console.log(req.headers,'ini dataaaaaa')
         let access_token = req.headers.access_token
+
+        // console.log(access_token, '::::::::::::::::::;')
         if(!access_token){
             throw {name: "Unauthenticated"}
         }
@@ -19,7 +21,7 @@ async function authentication(req, res, next) {
         req.user = {id: dataUser.id, role:dataUser.role, username: dataUser.username} 
         next()
     } catch (error) {
-        console.log(error,'ini errr auth')
+        // console.log(error,'ini errr auth')
         next(error)
     }
 }

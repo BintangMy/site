@@ -6,13 +6,16 @@ class userController {
     static async register(req, res, next){
         
         try {
-            let {username, email, password, phoneNumber, address} = req.body
-            await User.create({username, email, password, role: "Admin",phoneNumber, address})
+            let {username, email, password, role} = req.body
+
+            // console.log(username, email, password, role, '<<<<<<<<<<<<<<,')
+
+            await User.create({username, email, password , role})
             res.status(201).json({
                 message:`succsess create account ${username}`
             })
         } catch (error) {
-           
+           console.log(error, "ERROR RESGIETER <<<<<<<<<<<<<<")
             next(error)
         }
     }
@@ -40,13 +43,11 @@ class userController {
                 id: user.id
             }
 
-            console.log(payLoad, 'PAYLOAD <<<<<<<<<<<<<<<<<<<<<<')
-
             let access_token = jwtToken(payLoad)
 
-            console.log(access_token, 'acesssss ====================')
+            // console.log(access_token, 'acesssss ====================')
 
-            res.status(200).json({access_token, user:user.username,email:user.email})
+            res.status(200).json({access_token, user:user.userName, email:user.email})
             
         } catch (error) {
             console.log(error, '<<<<<<<');

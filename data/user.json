@@ -1,6 +1,6 @@
 [
     {
-    "userName": "Super Admin",
+    "username": "Super Admin",
     "email": "admin@admin.com",
     "password": "admin123#",
     "roleId": 1

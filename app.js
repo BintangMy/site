@@ -14,7 +14,7 @@
   let {handleError} = require("./middlewares/handleError")
   
   app.use('/', routes)
-  app.use("/photos", express.static('public/data/uploads'))
+  app.use("/photos", express.static('public/data/images'))
   
   app.use(handleError)
   
