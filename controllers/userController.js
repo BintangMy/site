@@ -1,4 +1,4 @@
-let { User } = require("../models")
+let { User, Log } = require("../models")
 const bcrypt = require('bcryptjs');
 let {jwtToken} = require('../helpers/jwt')
 
@@ -8,9 +8,9 @@ class userController {
         try {
             let {username, email, password, role} = req.body
 
-            // console.log(username, email, password, role, '<<<<<<<<<<<<<<,')
-
             await User.create({username, email, password , role})
+            await Log.create({description: `${req.user.username} create account for ${username}`, username:req.user.username})
+            
             res.status(201).json({
                 message:`succsess create account ${username}`
             })
@@ -51,6 +51,22 @@ class userController {
             
         } catch (error) {
             console.log(error, '<<<<<<<');
+            next(error)
+        }
+    }
+
+    static async editProfile (req, res, next){
+        try {
+            let {id, username} = req.user;
+            
+            let response = await User.findByPk(id)
+
+            if(!response) throw {name: "data not found"}
+
+            response = await User.update({username}, {whare:{id}})
+
+            res.status(200).json(`success`)
+        } catch (error) {
             next(error)
         }
     }

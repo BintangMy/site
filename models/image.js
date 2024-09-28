@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Image.init({
     url: DataTypes.STRING,
+    rasio: DataTypes.STRING,
     isVideo: DataTypes.BOOLEAN,
     postId: DataTypes.INTEGER
   }, {

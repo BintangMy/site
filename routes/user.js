@@ -5,6 +5,7 @@ let { authentication} = require("../middlewares/auth")
 router.post('/login', userController.login)
 router.use(authentication)
 router.post('/register', userController.register)
+router.patch('/edit', userController.editProfile)
 // router.post('/delete', userController.delete)
 
 module.exports = router

@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull:false
       },
+      rasio: {
+        type: Sequelize.STRING,
+        allowNull:false,
+      },
       isVideo: {
         type: Sequelize.BOOLEAN,
         allowNull:false,
